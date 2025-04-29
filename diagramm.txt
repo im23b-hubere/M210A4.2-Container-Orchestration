@@ -1,0 +1,31 @@
+┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │
+│  Web Container  │◄───►│  Redis Container│
+│  (Flask App)    │     │                 │
+│                 │     │                 │
+└────────┬────────┘     └─────────────────┘
+         │
+         ▼
+┌─────────────────┐
+│                 │
+│     Browser     │
+│                 │
+└─────────────────┘
+
+Was ist Redis?
+Redis ist eine In-Memory-Datenbank (Key-Value Store), die sehr schnell ist. Sie wird oft verwendet, um Daten zwischenspeichern (z. B. Zähler, Sitzungen, Caches).
+
+Welche Ports werden genutzt?
+In diesem Beispiel:
+
+Die Web-App wird meist auf Port 5000 bereitgestellt.
+
+Redis läuft auf Port 6379 (Standardport von Redis). Diese Ports kannst du auch in der Datei docker-compose.yml sehen.
+
+Was ist die Bedeutung von ENV im Dockerfile?
+Mit ENV setzt man Umgebungsvariablen innerhalb des Containers.
+Beispiel:
+Dockerfile
+ENV REDIS_HOST=redis
+
+Das bedeutet: In der App kann später auf REDIS_HOST zugegriffen werden – nützlich, um z. B. Serveradressen oder Konfigurationen einzustellen, ohne den Code zu ändern.
